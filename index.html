@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Rifa Solidaria</title>
+
+    <!-- SheetJS -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            /* 👈 CLAVE */
+            align-items: center;
+            /* centra horizontal */
+            margin: 0;
+            background: #f0f0f0;
+        }
+
+
+        .rifa {
+            position: relative;
+            width: 380px;
+            /* AJUSTA según tu imagen */
+        }
+
+        .rifa img {
+            width: 100%;
+            display: block;
+        }
+
+        .grid {
+            position: absolute;
+
+            /* AJUSTA ESTOS 4 VALORES MIRANDO LA IMAGEN */
+            top: 285px;
+            left: 27px;
+            width: 326px;
+            height: 334px;
+
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            gap: 6px;
+        }
+
+        .cell {
+            position: relative;
+        }
+
+        .taken::after {
+            content: "✖";
+            position: absolute;
+            inset: 0;
+            /* ocupa toda la celda */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+            font-weight: 900;
+            color: #b00000;
+            opacity: 0.85;
+
+            transform: rotate(-18deg);
+            pointer-events: none;
+        }
+
+
+        #downloadBtn:hover {
+            background: rgb(34, 19, 1);
+
+        }
+    </style>
+</head>
+
+<body>
+    <button id="downloadBtn"
+        style="margin: 15px auto; display: block; padding: 10px 16px; font-size: 14px; cursor: pointer;width: 380px;background: coral;color: white;font-weight: bold;">Descargar
+        imagen</button>
+    <div class="rifa">
+        <img src="rifaOriginal.jpeg" alt="Rifa" />
+        <div id="grid" class="grid"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
