@@ -38,6 +38,26 @@ function drawGrid(rows) {
 }
 
 /**
+ * Obtiene fecha y hora para nombre de archivo
+ */
+
+function getFechaHoraArchivo() {
+  const now = new Date();
+
+  const pad = n => n.toString().padStart(2, "0");
+
+  const dia = pad(now.getDate());
+  const mes = pad(now.getMonth() + 1);
+  const anio = now.getFullYear();
+
+  const hora = pad(now.getHours());
+  const minuto = pad(now.getMinutes());
+
+  return `${dia}-${mes}-${anio}_${hora}-${minuto}`;
+}
+
+
+/**
  * Descargar imagen (con loading)
  */
 downloadBtn.addEventListener("click", async () => {
@@ -60,7 +80,7 @@ downloadBtn.addEventListener("click", async () => {
         });
 
         const link = document.createElement("a");
-        link.download = "rifa_marcada.png";
+        link.download = `rifa-marley_${getFechaHoraArchivo()}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
     } catch (error) {
